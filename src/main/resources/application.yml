@@ -1,0 +1,33 @@
+server:
+  port: 8881
+
+spring:
+  http:
+    multipart:
+      max-file-size: 1024MB
+      max-request-size: 1024MB
+  flyway:
+    out-of-order: true
+    ignoreMissingMigrations: true
+
+log:
+  level: ERROR
+  dir: ./log
+
+db:
+  host: 10.247.99.224
+
+#数据库相关
+datasource:
+  url: jdbc:mysql://${db.host}:3306/dump_info?useUnicode=true&&serverTimezone=Asia/Shanghai&characterEncoding=utf8&allowMultiQueries=true&useSSL=true&verifyServerCertificate=false
+  username: test
+  password: test
+  driver-class-name: com.mysql.cj.jdbc.Driver
+  maxActive: 100
+  initialSize: 5
+  maxWait: 60000
+  minIdle: 5
+  timeBetweenEvictionRunsMillis: 60000
+  minEvictableIdleTimeMillis: 300000
+  validationQuery: "select 1"
+  testWhileIdle: false
