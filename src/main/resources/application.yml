@@ -11,7 +11,7 @@ spring:
     ignoreMissingMigrations: true
 
 log:
-  level: ERROR
+  level: DEBUG
   dir: ./log
 
 db:

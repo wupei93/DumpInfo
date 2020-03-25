@@ -26,4 +26,10 @@ public class ClusterServiceImpl implements ClusterService {
         List<ClusterDo> clusters = clusterDao.getClusterList();
         return Response.<List<ClusterDo>>ok().data(clusters).build();
     }
+
+    @Override
+    public Response saveCluster(ClusterDo clusterDo) {
+        clusterDao.saveCluster(clusterDo);
+        return Response.<List<ClusterDo>>ok().build();
+    }
 }

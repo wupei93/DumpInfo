@@ -15,5 +15,6 @@ public interface ClusterService {
 
     Response<List<ClusterDo>> getClusterList();
 
+    Response saveCluster(ClusterDo clusterDo);
 }
 

@@ -1,12 +1,11 @@
 package wupei.dumpinfo.common.utils;
 
 import com.jcraft.jsch.*;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 
+@Slf4j
 public class SshUtils {
     private final static String DEFAULT_USERNAME = "admin";
     private final static String DEFAULT_PASSWD = "ChangeMe";
@@ -47,37 +46,23 @@ public class SshUtils {
      * @param command shell 命令
      * @throws Exception
      */
-    public static BufferedReader execCmd(Session session, String command) throws Exception {
+    public static Channel execCmd(Session session, String command) throws Exception {
         command += "\n";
         System.out.print("执行命令：" + command);
         BufferedReader reader = null;
-        Channel channel = null;
+        ChannelExec channel = null;
         try {
             /** 可选
             *    session、shell、exec、x11、auth-agent@openssh.com、
              *    direct-tcpip、forwarded-tcpip、sftp、subsystem
             */
-            channel = session.openChannel("exec");
-            ((ChannelExec) channel).setCommand(command);
-
-            //channel.setInputStream(null);
-            ((ChannelExec) channel).setErrStream(System.out);
-
+            channel = (ChannelExec)session.openChannel("exec");
+            channel.setCommand(command);
             channel.connect();
-            InputStream in = channel.getExtInputStream();
-            reader = new BufferedReader(new InputStreamReader(in));
-            reader.lines().forEach(System.out::println);
-            String line = null;
-            while ((line = reader.readLine())!= null){
-                System.out.println(line);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+            return channel;
         } catch (JSchException e) {
-            e.printStackTrace();
-        } finally {
-            channel.disconnect();
+            log.error(e.getMessage(), e);
         }
-        return reader;
+        return null;
     }
 }
