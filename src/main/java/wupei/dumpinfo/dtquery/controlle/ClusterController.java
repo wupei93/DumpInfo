@@ -28,4 +28,14 @@ public class ClusterController {
     public Response saveCluster(@RequestBody ClusterDo clusterDo) {
         return clusterService.saveCluster(clusterDo);
     }
+
+    @GetMapping("/queryVDCs")
+    public Response queryVDCs(@RequestParam("ips") String ips) {
+        try{
+            String[] ipList = ips.split(" ");
+            return clusterService.queryVDCs(ipList);
+        } catch (Exception e){
+            return Response.error().data(e).build();
+        }
+    }
 }

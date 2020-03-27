@@ -1,6 +1,7 @@
 package wupei.dumpinfo.dtquery.service;
 
 import wupei.dumpinfo.common.domain.Response;
+import wupei.dumpinfo.common.utils.Pair;
 import wupei.dumpinfo.dtquery.domain.ClusterDo;
 
 import java.util.List;
@@ -16,5 +17,7 @@ public interface ClusterService {
     Response<List<ClusterDo>> getClusterList();
 
     Response saveCluster(ClusterDo clusterDo);
+
+    Response<List<Pair<String, String>>> queryVDCs(String[] ipList);
 }
 

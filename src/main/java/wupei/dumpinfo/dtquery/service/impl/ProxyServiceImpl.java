@@ -1,7 +1,6 @@
 package wupei.dumpinfo.dtquery.service.impl;
 
 import com.jcraft.jsch.Channel;
-import com.jcraft.jsch.Session;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import wupei.dumpinfo.common.domain.Response;
@@ -22,8 +21,7 @@ public class ProxyServiceImpl implements ProxyService {
     @Override
     public Response proxy(String host, String url, OutputStream out) {
         try {
-            Session session = SshUtils.connect(host);
-            Channel channel = SshUtils.execCmd(session, proxyUrl(url));
+            Channel channel = SshUtils.execCmd(host, proxyUrl(url));
             InputStream in = channel.getInputStream();
             ReadableByteChannel readableByteChannel = Channels.newChannel(in);
             WritableByteChannel writableByteChannel = Channels.newChannel(out);

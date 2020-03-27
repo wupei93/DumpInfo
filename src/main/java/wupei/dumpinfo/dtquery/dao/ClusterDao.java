@@ -16,7 +16,7 @@ public interface ClusterDao {
     ClusterDo getCluster(@Param("clusterName") String clusterName);
 
     @ResultType(ClusterDo.class)
-    @Select("SELECT clusterName, IPs as ips FROM cluster")
+    @Select("SELECT clusterName, IPs as ips FROM cluster order by clusterName")
     List<ClusterDo> getClusterList();
 
     @ResultType(Integer.class)
