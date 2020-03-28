@@ -54,7 +54,7 @@ public class ClusterServiceImpl implements ClusterService {
             try {
                 channel = SshUtils.execCmd(ip, url);
                 in = channel.getInputStream();
-                ByteBuffer buffer = NioUtils.readFromInputStream(in, 5000);
+                ByteBuffer buffer = NioUtils.readFromInputStream(in, 10000);
                 return new Pair<String, String>(ip,new String(buffer.array(), 0, buffer.limit()));
             } catch (Exception e) {
                 log.error(e.getMessage(), e);
