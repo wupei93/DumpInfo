@@ -11,17 +11,14 @@ spring:
     ignoreMissingMigrations: true
 
 log:
-  level: DEBUG
+  level: ERROR
   dir: ./log
-
-db:
-  host: 10.247.99.224
 
 #数据库相关
 datasource:
-  url: jdbc:mysql://${db.host}:3306/dump_info?useUnicode=true&&serverTimezone=Asia/Shanghai&characterEncoding=utf8&allowMultiQueries=true&useSSL=true&verifyServerCertificate=false
-  username: test
-  password: test
+  url: ENC(6YlH0q8czMrzruu017lnRmK8wVtP0ulIeJawOw2WILaw8x6bWHxM+3UG6QJJmzJUAhxmC7FDQApBjVxHrWvHdwOY26JwJqIXhkEuwxi2cuZ4OTRHiixBOALtjisoe5i4iJ23mYvdXozESZlgOBqY6/553QW+eL70kae61wkAZ2SgNz5kCmYM/Z2AEOD3IfzByjJV98wOiBiqDxpzlTCsZyHuVf1eV0IxIFx6X0KQzNeLCJEguOGBKw==)
+  username: ENC(Xl9XRlx22kpxNqrhrPGzUg==)
+  password: ENC(SqTjlJcCdNiNSqGHQRkFDQ==)
   driver-class-name: com.mysql.cj.jdbc.Driver
   maxActive: 100
   initialSize: 5
