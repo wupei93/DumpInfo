@@ -9,7 +9,7 @@ import java.util.concurrent.Future;
 
 public interface ProxyService {
 
-    Response proxy(String host, String url, OutputStream outputStream);
+    Response proxy(String method, String host, String url, OutputStream outputStream);
 
     Future<?> proxyWithCallback(String host, String url, Callback<InputStream, ?> callback);
 }

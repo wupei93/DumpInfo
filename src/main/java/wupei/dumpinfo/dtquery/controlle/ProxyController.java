@@ -27,6 +27,7 @@ public class ProxyController {
     public Response proxy(HttpServletRequest request, HttpServletResponse response){
         String url = request.getRequestURI();
         String host = request.getParameter("host");
+        String method = request.getParameter("method");
         Preconditions.checkArgument(StringUtils.isNotBlank(host), "host is blank");
         Map<String, String[]> parameterMap = request.getParameterMap();
         UrlBuilder urlBuilder = UrlBuilder.getBuilder(url);
@@ -42,7 +43,7 @@ public class ProxyController {
         } catch (IOException e) {
             return Response.error().data(e).build();
         }
-        return proxyService.proxy(host,
+        return proxyService.proxy(method, host,
                 urlBuilder.build().substring(url.indexOf("proxy")+5), output);
     }
 }
